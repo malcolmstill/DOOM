@@ -90,7 +90,7 @@ pub fn build(b: *std.Build) void {
 
     const flags = [_][]const u8{ "-DLINUX", "-DNORMALUNIX" };
     for (c_files) |file| {
-        exe.addCSourceFile(file, &flags);
+        exe.addCSourceFile(.{ .file = .{ .path = file }, .flags = &flags });
     }
 
     exe.linkLibC();
